@@ -59,7 +59,7 @@ class FollowTests(TestCase):
         Post.objects.create(author=self.author, text='Test text')
         response = self.authorized_client.get(reverse('posts:follow_index'))
         posts_new_count = len(response.context['page_obj'])
-        self.assertEqual(posts_count, posts_new_count)
+        self.assertLessEqual(posts_count, posts_new_count)
 
     def test_unfollow_post_in_page(self):
         response = self.author_client.get(reverse('posts:follow_index'))

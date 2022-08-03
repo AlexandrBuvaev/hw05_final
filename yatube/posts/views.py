@@ -40,7 +40,7 @@ def group_posts(request, slug):
 def profile(request, username):
     template = 'posts/profile.html'
     author = get_object_or_404(User, username=username)
-    author_posts = author.posts.select_related('author', 'group')
+    author_posts = author.posts.select_related('group')
     page_obj = pagination(request, author_posts)
     following = (request.user.is_authenticated
                  and Follow.objects.filter(user=request.user, author=author)
@@ -80,7 +80,6 @@ def post_create(request):
 @login_required
 def post_edit(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
-    group = Group.objects.all()
     if request.user != post.author:
         return redirect('posts:post_detail', post_id=post_id)
     form = PostForm(
@@ -93,7 +92,6 @@ def post_edit(request, post_id):
         'form': form,
         'is_edit': True,
         'title': title,
-        'group': group
     }
     if form.is_valid():
         form.save()
@@ -134,8 +132,5 @@ def profile_follow(request, username):
 
 @login_required
 def profile_unfollow(request, username):
-    author = get_object_or_404(User, username=username)
-    follow = Follow.objects.get(user=request.user, author=author)
-    if request.user != author:
-        follow.delete()
+    Follow.objects.filter(user=request.user, author__username=username).delete()
     return redirect('posts:profile', username=username)

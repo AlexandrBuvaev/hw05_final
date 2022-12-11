@@ -1,8 +1,7 @@
-# hw05_final
+# Yatube
 
 [![CI](https://github.com/yandex-praktikum/hw05_final/actions/workflows/python-app.yml/badge.svg?branch=master)](https://github.com/yandex-praktikum/hw05_final/actions/workflows/python-app.yml)
 
-# Yatube
 Учебный проект курса python-разработчик от Яндекс.Практикум.
 Социальная сеть блогеров, которая позволяет публиковать посты, комментировать их.
 Так же пользователи могут подписываться на других авторов.

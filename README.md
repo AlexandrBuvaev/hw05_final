@@ -14,7 +14,7 @@ cd test_directory
 ```
 - Копируем проект в рабочую директорию:
 ```bash
-~/test_directory$ git clone git@github.com:AlexandrBuvaev/yatube.git
+~/test_directory$ git clone git@github.com:AlexandrBuvaev/hw05_final.git
 ```
 - Создаем виртуальное окружение и устанавливаем зависимости:
 ```bash
